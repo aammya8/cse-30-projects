@@ -1,0 +1,16 @@
+#!/bin/bash
+IN="in"
+OUT="out"
+GOOD="good"
+for index in {1..2}
+do
+    echo "--- Starting ccw test$index ----------"
+    rm -f $OUT/outC$index $OUT/errC$index
+    echo "Running: ../ccw <$IN/test$index > $OUT/outC$index 2> $OUT/errC$index"
+    ../ccw <$IN/test$index > $OUT/outC$index 2> $OUT/errC$index
+    echo ccw test$index diff
+    diff $GOOD/out$index $OUT/outC$index
+    diff $GOOD/err$index $OUT/errC$index
+    echo "--- Ending ccw test$index ----------"
+done
+echo All Done

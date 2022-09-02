@@ -1,0 +1,38 @@
+# if you type 'make' without arguments, this is the default
+PROG2   = simple
+all: $(PROG2)
+
+# other source files and the associated object files (this can be blank) SRC is unused here
+HEAD1   = misc.h
+HEAD2   = subs.h
+OBJ2    = simple.o subs.o misc.o
+
+# special libraries
+LIB	=
+
+# select the compiler and flags yopu can over-ride on command line e.g. make DEBUG= 
+CC	= gcc
+DEBUG	= -ggdb
+CSTD	=
+WARN	= -Wall -Wextra -Werror
+CDEFS	=
+CFLAGS	= -I. $(DEBUG) $(WARN) $(CSTD) $(CDEFS)
+
+#list of .h dependencies
+misc.o:     $(HEAD1)
+subs.o:     $(HEAD1) $(HEAD2)
+simple.o:   $(HEAD2)
+
+# specify how to compile the target
+$(PROG2):	$(OBJ2)
+	$(CC) $(CFLAGS) $(OBJ2) $(LIB) -o $@
+
+
+# remove binaries
+.PHONY: clean clobber
+clean:
+	rm -f $(OBJ2) $(PROG2)
+
+# remove binaries and other junk
+clobber: clean
+	rm -f core

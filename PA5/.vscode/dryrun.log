@@ -1,0 +1,13 @@
+make --dry-run --always-make --keep-going --print-directory
+make: Entering directory `/Users/aammya/PA5'
+gcc -I. -ggdb -Wall -Wextra -Werror     -c -o main.o main.S
+gcc -I. -ggdb -Wall -Wextra -Werror     -c -o subs.o subs.c
+gcc -I. -ggdb -Wall -Wextra -Werror     -c -o encrypt.o encrypt.S
+gcc -I. -ggdb -Wall -Wextra -Werror     -c -o decrypt.o decrypt.S
+ 
+gcc -I. -ggdb -Wall -Wextra -Werror     -c -o errmsg.o errmsg.S
+gcc -I. -ggdb -Wall -Wextra -Werror     -c -o rdbuf.o rdbuf.S
+gcc -I. -ggdb -Wall -Wextra -Werror     -c -o wrbuf.o wrbuf.S
+gcc -I. -ggdb -Wall -Wextra -Werror   main.o subs.o encrypt.o decrypt.o errmsg.o rdbuf.o wrbuf.o libpa5.a -o encrypter
+make: Leaving directory `/Users/aammya/PA5'
+ 
